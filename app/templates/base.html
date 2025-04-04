@@ -1,0 +1,25 @@
+{% load django_htmx %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Inventory Tracker</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 minimum-scale=1, maximum-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	{% htmx_script %}
+</head>
+
+<body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}' class="h-screen font-sans">
+	<div id="wrap" class="h-full flex flex-col lg:flex-row">
+		<div id="nav" class="bg-slate-300 lg:bg-blue-300">
+			nav
+		</div>
+		<div id="content-div" class="h-full lg:w-full">
+			asdf
+		</div>
+	</div>
+	<!-- Scripts: HTMX -->
+	<script src="{% static 'htmx.min.js' %}" defer></script>
+</body>
+
+</html>
