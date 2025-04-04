@@ -6,6 +6,6 @@ WORKDIR /opt
 COPY pyproject.toml poetry.lock ./
 RUN poetry install
 
-COPY ./app .
+COPY app app
 
 EXPOSE 8000

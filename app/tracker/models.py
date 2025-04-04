@@ -3,6 +3,10 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Restaurant(models.Model):
+    name = models.CharField(max_length=30, unique=True)
+
+
 class Item(models.Model):
 
     class Category(models.TextChoices):
@@ -13,8 +17,9 @@ class Item(models.Model):
         ETC = 'et', 'Etc'
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, db_index=True)
+    restaurant = models.ForeignKey(to="Restaurant", on_delete=models.PROTECT)
     name = models.CharField(max_length=30, unique=True)
-    description = models.CharField(max_length=300)
+    description = models.CharField(max_length=300, null=True, blank=True)
     category = models.CharField(
         max_length=2, choices=Category.choices, null=True, blank=True)
     min_qty = models.SmallIntegerField()
@@ -27,7 +32,7 @@ class Item(models.Model):
         return self.name
 
 
-class InventoryLog(models.Model):
+class Inventory(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, db_index=True)
     item_id = models.ForeignKey(to="Item", on_delete=models.CASCADE)
     stock = models.SmallIntegerField()

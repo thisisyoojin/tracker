@@ -1,4 +1,5 @@
 {% load django_htmx %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,17 +10,15 @@
 	{% htmx_script %}
 </head>
 
-<body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}' class="h-screen font-sans">
-	<div id="wrap" class="h-full flex flex-col lg:flex-row">
-		<div id="nav" class="bg-slate-300 lg:bg-blue-300">
+<body>
+	<div id="wrap">
+		<div id="nav">
 			nav
 		</div>
-		<div id="content-div" class="h-full lg:w-full">
-			asdf
+		<div id="content-div">
+			{% block content %}{% endblock content %}
 		</div>
 	</div>
-	<!-- Scripts: HTMX -->
-	<script src="{% static 'htmx.min.js' %}" defer></script>
 </body>
 
 </html>
